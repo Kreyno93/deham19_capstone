@@ -6,8 +6,6 @@ resource "aws_vpc" "webserver_vpc" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "webserver_vpc"
+    Name = "deham19"
   }
 }
-
-# Add subnets
