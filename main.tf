@@ -1,12 +1,18 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.7.0"
-    }
-  }
+# Create a VPC to launch our instances into
+resource "aws_vpc" "dev_vpc" {
+  cidr_block = "10.0.0.0/16"  
+  enable_dns_hostnames = true 
+  enable_dns_support = true
+  
+  tags       =  {
+    name     = "deham19"
+  }       
 }
 
-provider "aws" {
-  region = "us-west-2"
+# Create an Internet Gateway
+resource "aws_internet_gateway" "dev_igw" {
+  vpc_id = aws_vpc.dev_vpc.id
+  tags = {
+    Name = "dev_igw"
+  }
 }
